@@ -111,7 +111,9 @@ export default function Index() {
       style={styles.container}
       colors={['#87CEEB', '#FFFFFF']}
       >
-
+      
+      <TextInput/>
+      
       <Header/>
       <View style={styles.container}>
         <Text>Texto Teste</Text>
@@ -143,17 +145,18 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'fff',
   },
   content: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
   input: {
     height: 40,
     borderColor: 'gray',
+    backgroundColor: 'white',
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,
@@ -161,7 +164,7 @@ const styles = StyleSheet.create({
     borderRadius: 25
   },
   button: {
-    backgroundColor: 'inherit',
+    backgroundColor: 'white',
     borderColor: 'grey',
     borderWidth: 1,
     width: '50%',
