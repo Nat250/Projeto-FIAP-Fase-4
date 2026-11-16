@@ -3,7 +3,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import Header from '../../shared/Header';
+import Header from '../../../components/shared/Header';
 
 
 export default function Index() {
@@ -16,9 +16,23 @@ export default function Index() {
     }
 
     const handleButtonPress = () => {
-        Alert.alert('Usuario digitado:', user)
-        Alert.alert('Senha digitada:', password)
-        navigation.navigate('home', {userName: user})
+//        Alert.alert('Usuario digitado:', user)
+//        Alert.alert('Senha digitada:', password)
+        Alert.alert(
+            'Credenciais Digitadas',
+            `Usuário: ${user}\nSenha: ${password}`,
+            [
+                {
+                    text: 'OK',
+                    onPress: () => console.log('OK Pressed'),
+                    style: 'cancel',
+                    accessibilityLabel: 'Fechar Alerta',
+                },
+            ],
+            {cancelable: true}
+        );
+
+        navigation.navigate('screens/Home/index', {userName: user})
     }
 
     return (
