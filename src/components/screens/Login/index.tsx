@@ -1,0 +1,89 @@
+import { useNavigation } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import Header from '../../shared/Header';
+
+
+export default function Index() {
+    const [user, setUser] = useState('')
+    const [password, setPassword] = useState('')
+    const navigation = useNavigation()
+
+    const handleInputChange = ( inputText ) => {
+        setText(inputText)
+    }
+
+    const handleButtonPress = () => {
+        Alert.alert('Usuario digitado:', user)
+        Alert.alert('Senha digitada:', password)
+        navigation.navigate('home', {userName: user})
+    }
+
+    return (
+        <LinearGradient 
+        style={styles.container}
+        colors={['#87CEEB', '#FFFFFF']}
+        >
+        
+        <TextInput/>
+        
+        <Header/>
+        <View style={styles.container}>
+            <Text>Texto Teste</Text>
+
+            <Text>Digite seu usuário</Text>
+            <TextInput style={styles.input}
+            onChangeText={(inputText)=>{setUser(inputText)}}
+            value={user}
+            />
+
+            <TextInput/>
+        
+            <Text>Digite sua senha</Text>
+            <TextInput style={styles.input}
+            onChangeText={(inputText)=>{setPassword(inputText)}}
+            value={password}
+            />
+
+            <StatusBar style="auto"/>
+            <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
+            <Text>Enviar</Text>
+            </TouchableOpacity>
+        </View>
+
+        </LinearGradient>    
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: 'fff',
+    },
+    content: {
+        flex: 1,
+        backgroundColor: 'fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    input: {
+        height: 40,
+        borderColor: 'gray',
+        backgroundColor: 'white',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        width: '100%',
+        borderRadius: 25
+    },
+    button: {
+        backgroundColor: 'white',
+        borderColor: 'grey',
+        borderWidth: 1,
+        width: '50%',
+        alignItems: 'center',
+        padding: 5
+    }
+});
