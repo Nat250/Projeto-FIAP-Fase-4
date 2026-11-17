@@ -1,15 +1,21 @@
-import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp, useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Header from '../../../components/shared/Header';
+import { RootStackParamList } from "../../../types";
+
+type HomeScreenNavigationProp = NativeStackNavigationProp<
+    RootStackParamList,
+    "Home"
+>;
 
 
 export default function Index() {
     const [user, setUser] = useState('')
     const [password, setPassword] = useState('')
-    const navigation = useNavigation()
+    const navigation = useNavigation<HomeScreenNavigationProp>()
 
     const handleInputChange = ( inputText ) => {
         setText(inputText)
@@ -26,13 +32,18 @@ export default function Index() {
                     text: 'OK',
                     onPress: () => console.log('OK Pressed'),
                     style: 'cancel',
-                    accessibilityLabel: 'Fechar Alerta',
+                    //accessibilityLabel: 'Fechar Alerta',
                 },
             ],
             {cancelable: true}
         );
 
-        navigation.navigate('screens/Home/index', {userName: user})
+        if (user){
+            navigation.navigate('screens/Home/index', {userName: user});
+        } else {
+            Alert.alert("Error", "User not logged in");
+        }
+        
     }
 
     return (

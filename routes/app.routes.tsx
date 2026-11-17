@@ -1,6 +1,6 @@
 import Home from "@/app/screens/Home";
-import Login from "@/app/screens/Login";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Login from "../src/app/screens/Login";
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
